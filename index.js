@@ -1,8 +1,8 @@
 var s = document.getElementById("svg_id");
 var clr = document.getElementById("clr");
+var radius = 25;
 
 var circle = function(e){
-    var radius = 25;
     var x = e.offsetX;
     var y = e.offsetY;
     var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -24,6 +24,14 @@ var colorChange = function(e) {
 
 var removeCircle = function() {
     s.removeChild(this);
+    var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", Math.random()*s.getAttribute("width"));
+    circle.setAttribute("cy", Math.random()*s.getAttribute("height"));
+    circle.setAttribute("r", radius);
+    circle.setAttribute("stroke", "black");
+    circle.addEventListener("click", colorChange);
+    s.appendChild(circle);    
+
 }
 
 var clear = function(){
